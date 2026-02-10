@@ -19,6 +19,11 @@ OJS stores ORCID iD and phone number in user profiles, but these fields are only
 - Bilingual interface: English and Turkish
 - No core file modifications — pure hook-based architecture
 
+  Registration form with ORCID iD and Phone Number fields
+![Registration form with ORCID iD and Phone Number fields](screenshots/orcidphonefrontpage.png)
+
+Plugin settings panel
+![Plugin settings panel](screenshots/orcidphonesettings.png)
 ## Requirements
 
 | Requirement | Version |

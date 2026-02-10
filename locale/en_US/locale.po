@@ -1,0 +1,67 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Registration Fields Plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: OJS Services <info@ojs-services.com>\n"
+"Language-Team: English\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "plugins.generic.registrationFields.displayName"
+msgstr "Registration Fields"
+
+msgid "plugins.generic.registrationFields.description"
+msgstr "Adds ORCID iD and Phone Number fields to the user registration form. These fields are saved to the user profile automatically."
+
+msgid "plugins.generic.registrationFields.settings.title"
+msgstr "Registration Fields Settings"
+
+msgid "plugins.generic.registrationFields.settings.orcid"
+msgstr "ORCID iD Field"
+
+msgid "plugins.generic.registrationFields.settings.enableOrcid"
+msgstr "Enable ORCID iD field on registration form"
+
+msgid "plugins.generic.registrationFields.settings.requireOrcid"
+msgstr "Require ORCID iD (mandatory field)"
+
+msgid "plugins.generic.registrationFields.settings.phone"
+msgstr "Phone Number Field"
+
+msgid "plugins.generic.registrationFields.settings.enablePhone"
+msgstr "Enable Phone Number field on registration form"
+
+msgid "plugins.generic.registrationFields.settings.requirePhone"
+msgstr "Require Phone Number (mandatory field)"
+
+msgid "plugins.generic.registrationFields.orcidId"
+msgstr "ORCID iD"
+
+msgid "plugins.generic.registrationFields.orcidId.description"
+msgstr "Enter your ORCID iD in one of these formats: 0000-0000-0000-0000 or https://orcid.org/0000-0000-0000-0000"
+
+msgid "plugins.generic.registrationFields.orcidId.required"
+msgstr "ORCID iD is required."
+
+msgid "plugins.generic.registrationFields.orcidId.invalid"
+msgstr "Please enter a valid ORCID iD. Accepted formats: 0000-0000-0000-0000, https://orcid.org/0000-0000-0000-0000, or http://orcid.org/0000-0000-0000-0000"
+
+msgid "plugins.generic.registrationFields.phone"
+msgstr "Phone Number"
+
+msgid "plugins.generic.registrationFields.phone.description"
+msgstr "Enter your phone number with country code (e.g. +90 555 123 4567)"
+
+msgid "plugins.generic.registrationFields.phone.required"
+msgstr "Phone number is required."
+
+msgid "plugins.generic.registrationFields.phone.invalid"
+msgstr "Please enter a valid phone number (5-24 characters, digits, spaces, +, -, parentheses allowed)."
+
+msgid "plugins.generic.registrationFields.settings.debug"
+msgstr "Debug"
+
+msgid "plugins.generic.registrationFields.settings.debugMode"
+msgstr "Enable debug mode (writes injection diagnostics to error log)"

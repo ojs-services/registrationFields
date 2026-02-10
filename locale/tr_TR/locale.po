@@ -1,0 +1,67 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Registration Fields Plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: OJS Services <info@ojs-services.com>\n"
+"Language-Team: Turkish\n"
+"Language: tr_TR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "plugins.generic.registrationFields.displayName"
+msgstr "Kayıt Formu Alanları"
+
+msgid "plugins.generic.registrationFields.description"
+msgstr "Kullanıcı kayıt formuna ORCID iD ve Telefon Numarası alanları ekler. Bu alanlar otomatik olarak kullanıcı profiline kaydedilir."
+
+msgid "plugins.generic.registrationFields.settings.title"
+msgstr "Kayıt Formu Alanları Ayarları"
+
+msgid "plugins.generic.registrationFields.settings.orcid"
+msgstr "ORCID iD Alanı"
+
+msgid "plugins.generic.registrationFields.settings.enableOrcid"
+msgstr "Kayıt formunda ORCID iD alanını etkinleştir"
+
+msgid "plugins.generic.registrationFields.settings.requireOrcid"
+msgstr "ORCID iD zorunlu olsun"
+
+msgid "plugins.generic.registrationFields.settings.phone"
+msgstr "Telefon Numarası Alanı"
+
+msgid "plugins.generic.registrationFields.settings.enablePhone"
+msgstr "Kayıt formunda Telefon Numarası alanını etkinleştir"
+
+msgid "plugins.generic.registrationFields.settings.requirePhone"
+msgstr "Telefon Numarası zorunlu olsun"
+
+msgid "plugins.generic.registrationFields.orcidId"
+msgstr "ORCID iD"
+
+msgid "plugins.generic.registrationFields.orcidId.description"
+msgstr "ORCID iD numaranızı şu formatlardan biriyle girin: 0000-0000-0000-0000 veya https://orcid.org/0000-0000-0000-0000"
+
+msgid "plugins.generic.registrationFields.orcidId.required"
+msgstr "ORCID iD gereklidir."
+
+msgid "plugins.generic.registrationFields.orcidId.invalid"
+msgstr "Lütfen geçerli bir ORCID iD girin. Kabul edilen formatlar: 0000-0000-0000-0000, https://orcid.org/0000-0000-0000-0000 veya http://orcid.org/0000-0000-0000-0000"
+
+msgid "plugins.generic.registrationFields.phone"
+msgstr "Telefon Numarası"
+
+msgid "plugins.generic.registrationFields.phone.description"
+msgstr "Ülke koduyla birlikte telefon numaranızı girin (ör. +90 555 123 4567)"
+
+msgid "plugins.generic.registrationFields.phone.required"
+msgstr "Telefon numarası gereklidir."
+
+msgid "plugins.generic.registrationFields.phone.invalid"
+msgstr "Lütfen geçerli bir telefon numarası girin (5-24 karakter; rakam, boşluk, +, -, parantez kullanılabilir)."
+
+msgid "plugins.generic.registrationFields.settings.debug"
+msgstr "Hata Ayıklama"
+
+msgid "plugins.generic.registrationFields.settings.debugMode"
+msgstr "Hata ayıklama modunu etkinleştir (enjeksiyon tanılamasını hata günlüğüne yazar)"

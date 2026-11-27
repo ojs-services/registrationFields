@@ -17,18 +17,20 @@ OJS stores ORCID iD and phone number in user profiles, but these fields are only
 - Values are written to the existing OJS user profile (Profile > Public > ORCID iD / Profile > Contact > Phone)
 - Works across OJS themes (Default, Manuscript, Bootstrap3, Health Sciences)
 - Bilingual interface: English and Turkish
+- English fallback: in an interface language without its own translation file (for example Italian), the plugin's texts appear in English instead of raw `##key##` placeholders; OJS's own texts are not affected
 - No core file modifications — pure hook-based architecture
 
-  Registration form with ORCID iD and Phone Number fields
+Registration form with ORCID iD and Phone Number fields
 ![Registration form with ORCID iD and Phone Number fields](screenshots/orcidphonefrontpage.png)
 
 Plugin settings panel
 ![Plugin settings panel](screenshots/orcidphonesettings.png)
+
 ## Requirements
 
 | Requirement | Version |
 |---|---|
-| OJS | 3.3.0.0 – 3.3.0.22 |
+| OJS | 3.3 (3.3.0.x) |
 | PHP | 7.4 – 8.2 |
 
 ## Installation
@@ -98,6 +100,14 @@ The plugin uses OJS's hook system to integrate with the registration workflow:
 - No raw SQL queries — all database operations go through OJS's DAO layer
 - Input length limits enforced both client-side (`maxlength`) and server-side
 
+## Languages
+
+The plugin ships with English (`en_US`) and Turkish (`tr_TR`) translations. In any other interface language its texts are shown in English; a key missing from a translation file also falls back to English. Only the plugin's own keys (`plugins.generic.registrationFields.*`) are handled this way.
+
+After an update, OJS 3.3 may keep an older compiled copy of the plugin's language files. The plugin notices when its own `.po` files change and removes only its own compiled copies, so new texts show up without clearing the whole cache.
+
+To add a language, copy `locale/en_US/locale.po` to `locale/<code>/locale.po` (for example `locale/de_DE/locale.po`) and translate the `msgstr` lines.
+
 ## File Structure
 
 ```
@@ -108,12 +118,17 @@ registrationFields/
 ├── LICENSE                            GPL v3
 ├── README.md                          English documentation
 ├── README_TR.md                       Turkish documentation
+├── CHANGELOG.md                       Version history
 ├── templates/
 │   └── settingsForm.tpl               Settings modal template
 └── locale/
     ├── en_US/locale.po                English translations
     └── tr_TR/locale.po                Turkish translations
 ```
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 

@@ -34,11 +34,23 @@ class RegistrationFieldsPlugin extends GenericPlugin {
     /** @var int Maximum length for phone input */
     const PHONE_MAXLENGTH = 24;
 
+    /** @var string This plugin's locale keys start with this */
+    const LOCALE_PREFIX = 'plugins.generic.registrationFields.';
+
+    /** @var bool English fallback already registered in this request */
+    private static $_englishFallbackRegistered = false;
+
     /**
      * @copydoc Plugin::register()
      */
     public function register($category, $path, $mainContextId = null) {
         $success = parent::register($category, $path, $mainContextId);
+
+        // Before the "enabled" check: the plugin list shows the name and the
+        // description of a plugin that is switched off as well.
+        if ($success) {
+            $this->_registerEnglishFallback();
+        }
 
         if ($success && $this->getEnabled($mainContextId)) {
             HookRegistry::register('TemplateManager::display', array($this, 'handleTemplateDisplay'));
@@ -62,6 +74,64 @@ class RegistrationFieldsPlugin extends GenericPlugin {
      */
     public function getDescription() {
         return __('plugins.generic.registrationFields.description');
+    }
+
+    // =========================================================================
+    // Locale: English fallback and compiled-copy refresh
+    // =========================================================================
+
+    /**
+     * English fallback for this plugin's own texts (OJS 3.3 shows ##key##
+     * for a missing key). Only keys with this plugin's prefix are touched;
+     * the English file is read directly, not registered for the language,
+     * so OJS's own translations are never replaced.
+     */
+    private function _registerEnglishFallback() {
+        if (self::$_englishFallbackRegistered) return; // the plugin may be set up more than once in a request
+        self::$_englishFallbackRegistered = true;
+        $this->_refreshLocaleCache();
+        $englishPath = $this->getPluginPath() . '/locale/en_US/locale.po';
+        HookRegistry::register('PKPLocale::translate', function ($hookName, $args) use ($englishPath) {
+            $key = (string) $args[0];
+            $locale = (string) $args[2];
+            $value =& $args[4];
+            if ($locale === 'en_US' || strpos($key, self::LOCALE_PREFIX) !== 0) return false;
+            static $english = null;
+            if ($english === null) {
+                import('lib.pkp.classes.i18n.LocaleFile');
+                $english = new LocaleFile('en_US', $englishPath);
+            }
+            $text = $english->isValid() ? $english->translate($key, (array) $args[1]) : null;
+            if ($text === null) return false; // not in English either: stays ##key##
+            $value = $text;
+            return true;
+        });
+    }
+
+    /**
+     * OJS 3.3 recompiles a plugin's locale file only when the .po file is
+     * newer than the compiled copy. Package files carry the time the package
+     * was built, so an update installed later could keep old texts. When the
+     * size or time of this plugin's own .po files changes, delete only this
+     * plugin's compiled copies; OJS rebuilds them on the next lookup.
+     */
+    private function _refreshLocaleCache() {
+        $dir = $this->getPluginPath() . '/locale';
+        $files = array();
+        foreach ((array) @scandir($dir) as $locale) {
+            // The same path string OJS uses (Plugin::getLocaleFilename()), so the same cache name.
+            if ($locale !== '.' && $locale !== '..' && is_file("$dir/$locale/locale.po")) $files[] = "$dir/$locale/locale.po";
+        }
+        $signature = '';
+        foreach ($files as $file) $signature .= $file . ':' . filesize($file) . ':' . filemtime($file) . ';';
+        $signature = md5($signature);
+        import('lib.pkp.classes.cache.CacheManager');
+        $cacheDir = CacheManager::getFileCachePath();
+        $marker = $cacheDir . DIRECTORY_SEPARATOR . 'registrationFields' . DIRECTORY_SEPARATOR . 'locale-files.txt';
+        if (@file_get_contents($marker) === $signature) return;
+        foreach ($files as $file) @unlink($cacheDir . DIRECTORY_SEPARATOR . 'fc-locale-' . md5($file) . '.php');
+        if (!is_dir(dirname($marker))) @mkdir(dirname($marker), 0775, true);
+        @file_put_contents($marker, $signature);
     }
 
     // =========================================================================

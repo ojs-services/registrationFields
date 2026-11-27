@@ -17,13 +17,20 @@ OJS'de ORCID iD ve telefon numarası kullanıcı profilinde zaten mevcuttur, anc
 - Veriler mevcut OJS kullanıcı profiline yazılır (Profil > Genel > ORCID iD / Profil > İletişim > Telefon)
 - OJS temalarıyla uyumlu (Default, Manuscript, Bootstrap3, Health Sciences)
 - İki dilli arayüz: İngilizce ve Türkçe
+- İngilizce yedek: kendi çeviri dosyası olmayan bir arayüz dilinde (ör. İtalyanca) eklentinin metinleri ham `##anahtar##` yerine İngilizce görünür; OJS'in kendi metinlerine dokunulmaz
 - Çekirdek dosyalarda değişiklik yok — tamamen hook tabanlı mimari
+
+Kayıt formunda ORCID iD ve Telefon Numarası alanları
+![Kayıt formunda ORCID iD ve Telefon Numarası alanları](screenshots/orcidphonefrontpage.png)
+
+Eklenti ayar penceresi
+![Eklenti ayar penceresi](screenshots/orcidphonesettings.png)
 
 ## Gereksinimler
 
 | Gereksinim | Sürüm |
 |---|---|
-| OJS | 3.3.0.0 – 3.3.0.22 |
+| OJS | 3.3 (3.3.0.x) |
 | PHP | 7.4 – 8.2 |
 
 ## Kurulum
@@ -93,6 +100,14 @@ Eklenti, kayıt iş akışıyla entegrasyon için OJS hook sistemini kullanır:
 - Ham SQL sorgusu kullanılmaz — tüm veritabanı işlemleri OJS'nin DAO katmanı üzerinden yapılır
 - Girdi uzunluk limitleri hem istemci tarafında (`maxlength`) hem sunucu tarafında uygulanır
 
+## Diller
+
+Eklenti İngilizce (`en_US`) ve Türkçe (`tr_TR`) çevirilerle gelir. Bunların dışındaki her arayüz dilinde metinleri İngilizce görünür; bir çeviri dosyasında eksik kalan anahtar da İngilizceye düşer. Bu yalnız eklentinin kendi anahtarları (`plugins.generic.registrationFields.*`) için geçerlidir.
+
+Güncellemeden sonra OJS 3.3, eklentinin dil dosyalarının eski derlenmiş kopyasını kullanmaya devam edebilir. Eklenti kendi `.po` dosyalarının değiştiğini fark eder ve yalnız kendi derlenmiş kopyalarını siler; böylece önbelleğin tamamını temizlemeden yeni metinler görünür.
+
+Yeni bir dil eklemek için `locale/en_US/locale.po` dosyasını `locale/<kod>/locale.po` olarak kopyalayın (ör. `locale/de_DE/locale.po`) ve `msgstr` satırlarını çevirin.
+
 ## Dosya Yapısı
 
 ```
@@ -103,12 +118,17 @@ registrationFields/
 ├── LICENSE                            GPL v3
 ├── README.md                          İngilizce dokümantasyon
 ├── README_TR.md                       Türkçe dokümantasyon
+├── CHANGELOG.md                       Sürüm geçmişi
 ├── templates/
 │   └── settingsForm.tpl               Ayarlar modal şablonu
 └── locale/
     ├── en_US/locale.po                İngilizce çeviriler
     └── tr_TR/locale.po                Türkçe çeviriler
 ```
+
+## Sürüm Geçmişi
+
+Bkz. [CHANGELOG.md](CHANGELOG.md).
 
 ## Lisans
 

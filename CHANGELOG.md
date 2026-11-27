@@ -10,6 +10,7 @@ All notable changes to the Registration Fields plugin (OJS 3.3 line).
 - `CHANGELOG.md`.
 
 ### Changed
+- Phone number placeholder moved to the language files (new key `plugins.generic.registrationFields.phone.placeholder`). English now shows a country-neutral example (`+1 555 123 4567`, also in the help text); Turkish keeps `+90 5XX XXX XX XX`. Other languages get the English example.
 - `version.xml` compatibility is now `3.3.0.x` (covers every OJS 3.3 patch release) instead of a fixed list ending at 3.3.0.22.
 - README (English and Turkish): language section, requirements; the Turkish README now shows the screenshots too.
 

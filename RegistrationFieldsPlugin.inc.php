@@ -376,7 +376,7 @@ class RegistrationFieldsPlugin extends GenericPlugin {
                 __('plugins.generic.registrationFields.phone'),
                 __('plugins.generic.registrationFields.phone.description'),
                 'tel', 'phone', 'regPhone', $phoneValue,
-                self::PHONE_MAXLENGTH, '+90 5XX XXX XX XX',
+                self::PHONE_MAXLENGTH, __('plugins.generic.registrationFields.phone.placeholder'),
                 (bool) $requirePhone
             );
         }

@@ -52,7 +52,10 @@ msgid "plugins.generic.registrationFields.phone"
 msgstr "Phone Number"
 
 msgid "plugins.generic.registrationFields.phone.description"
-msgstr "Enter your phone number with country code (e.g. +90 555 123 4567)"
+msgstr "Enter your phone number with country code (e.g. +1 555 123 4567)"
+
+msgid "plugins.generic.registrationFields.phone.placeholder"
+msgstr "+1 555 123 4567"
 
 msgid "plugins.generic.registrationFields.phone.required"
 msgstr "Phone number is required."
